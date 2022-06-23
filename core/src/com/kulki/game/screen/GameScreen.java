@@ -2,18 +2,14 @@ package com.kulki.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.kulki.game.Kulki;
 import com.kulki.game.entities.Ball;
-import com.kulki.game.entities.Board;
-import jdk.javadoc.internal.doclets.formats.html.Table;
 
 public class GameScreen extends AbstractScreen {
 
     private Texture splashImg;
     private int x,y,x0,y0,a;
 
-    Board board;
     Ball ball;
 
     public GameScreen(Kulki game) {
@@ -31,11 +27,6 @@ public class GameScreen extends AbstractScreen {
 
 
         initBall(x0,y0,a/20,1,0,0);
-
-        //initBall(x0*3,y0*3,a/20,1,0,0);
-
-
-
 
     }
     private void updateBoard(int x0,int y0,int a) {
