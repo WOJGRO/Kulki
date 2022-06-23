@@ -12,7 +12,7 @@ public class SplashScreen extends AbstractScreen {
 
     public SplashScreen(final Kulki game) {
         super(game);
-        init();
+
 
         Timer.schedule(new Timer.Task() {
             @Override
@@ -22,7 +22,7 @@ public class SplashScreen extends AbstractScreen {
         }, 1);
     }
 
-    private void init() {
+    protected void init() {
         // TODO implement better assets loading when game grows
         splashImg = new Texture("Logo.png");
     }

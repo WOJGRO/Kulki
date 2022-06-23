@@ -4,35 +4,76 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.kulki.game.Kulki;
+import com.kulki.game.entities.Ball;
+import com.kulki.game.entities.Board;
+import jdk.javadoc.internal.doclets.formats.html.Table;
 
 public class GameScreen extends AbstractScreen {
 
     private Texture splashImg;
-    private int x,y,x0,y0;
+    private int x,y,x0,y0,a;
+
+    Board board;
+    Ball ball;
 
     public GameScreen(Kulki game) {
         super(game);
-        init();
+
+    }
+
+    public void init() {
+        // TODO implement better assets loading when game grows
         x=Gdx.graphics.getWidth();
         y=Gdx.graphics.getHeight();
         x0=(x-y)/3;
         y0=y/20;
+        a=y-y0*2;
+
+
+        initBall(x0,y0,a/20,1,0,0);
+
+        //initBall(x0*3,y0*3,a/20,1,0,0);
+
+
+
+
+    }
+    private void updateBoard(int x0,int y0,int a) {
+
+
+        stage.getBatch().begin();
+        stage.getBatch().draw(new Texture("Tło.jpg"),x0,y0,a,a);
+        stage.getBatch().end();
+        stage.act();
 
 
     }
 
-    private void init() {
-        // TODO implement better assets loading when game grows
-        splashImg = new Texture("Tło.jpg");
+    private void initBall(int x0,int y0,int r,int color,int x,int y) {
+        System.out.println(x0);
+        int xs = x0+r+x*r*2;
+        System.out.println(xs);
+        int ys = y0+r+(9-y)*r*2;
+        ball=new Ball(xs,ys,r,color);
+        game.setBallActors(x,y,ball);
+        stage.addActor(ball);
+
     }
+
 
     @Override
     public void render(float delta) {
         super.render(delta);
-        ScreenUtils.clear(1, 1, 0, 1);
+        update();
+
         spriteBatch.begin();
-        spriteBatch.draw(splashImg, x0, y0,y-y0*2,y-y0*2);
+        stage.draw();
         spriteBatch.end();
+    }
+
+    private void update() {
+        updateBoard(x0,y0,a);
+
     }
 
 }
