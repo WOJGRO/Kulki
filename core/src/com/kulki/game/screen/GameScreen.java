@@ -26,7 +26,7 @@ public class GameScreen extends AbstractScreen {
         a=y-y0*2;
 
 
-        initBall(x0,y0,a/20,1,0,0);
+        initBall(x0,y0,a/20,3,0,0);
 
     }
     private void updateBoard(int x0,int y0,int a) {

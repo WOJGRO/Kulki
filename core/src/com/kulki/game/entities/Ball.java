@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Ball extends Actor {
 
     private int x0,y0,r,color;
-
+    private Color colorBall;
     public Ball(float x0,float y0,int r,int color){
 
 
@@ -22,7 +22,27 @@ public class Ball extends Actor {
         this.y0= (int) y0;
         this.r= (int) r;
 
+        colorBall= choseColor(color);
 
+    }
+
+    private Color choseColor(int color) {
+
+        Color choseColor;
+        if (color==1) {
+            choseColor= Color.RED;
+        } else
+        if (color==2) {
+            choseColor= Color.GREEN;
+        } else
+        if (color==3){
+            choseColor= Color.BLUE;
+        } else
+        {
+            choseColor = Color.BLACK;
+        }
+
+        return choseColor;
 
     }
 
@@ -32,10 +52,10 @@ public class Ball extends Actor {
 
         ShapeRenderer shapeRenderer = new ShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(0, 1, 0, 1);
+        shapeRenderer.setColor(colorBall);
         shapeRenderer.circle(x0,y0,r);
         shapeRenderer.end();
 
-       // System.out.println(this.hashCode());
+
     }
 }
