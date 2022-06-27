@@ -12,6 +12,14 @@ public class Kulki extends Game {
 	Stage stage;
 	Boolean pause;
 	Ball [][] ballActors;
+	int score=0;
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 
 	@Override
 	public void create () {

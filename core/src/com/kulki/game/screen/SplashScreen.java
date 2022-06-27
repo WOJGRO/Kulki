@@ -30,7 +30,7 @@ public class SplashScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        ScreenUtils.clear(1, 1, 0, 1);
+        //ScreenUtils.clear(1, 1, 0, 1);
         spriteBatch.begin();
         spriteBatch.draw(splashImg, 0, 0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         spriteBatch.end();
