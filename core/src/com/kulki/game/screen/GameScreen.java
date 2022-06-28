@@ -48,18 +48,20 @@ public class GameScreen extends AbstractScreen {
 
     private void initLabel() {
 
+        BitmapFont font = new BitmapFont(Gdx.files.internal("asetss/font/Arial.fnt"));
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font= new BitmapFont();
+        labelStyle.fontColor = Color.GREEN;
 
-        scoretext=new Label("Punkty: ",labelStyle);
+
+        scoretext=new Label("Pun",labelStyle);
         scoretext.setSize(500,500);
         scoretext.setFontScaleX(5);
         scoretext.setFontScaleY(5);
-        scoretext.setColor(1,0,0,1);
         score=new Label("0",labelStyle);
         score.setSize(100,100);
         stage.addActor(scoretext);
-        stage.addActor(score);
+        //stage.addActor(score);
     }
 
 
