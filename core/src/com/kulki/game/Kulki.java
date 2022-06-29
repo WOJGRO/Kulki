@@ -1,18 +1,18 @@
 package com.kulki.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.kulki.game.entities.Ball;
 import com.kulki.game.screen.SplashScreen;
 
 public class Kulki extends Game {
 
 	Stage stage;
-	Boolean pause;
-	Ball [][] ballActors;
+	Boolean paused;
+	Ball[][] ballActors;
 	int score=0;
+	public static int x,y ;
 	public int getScore() {
 		return score;
 	}
@@ -23,6 +23,8 @@ public class Kulki extends Game {
 
 	@Override
 	public void create () {
+		x= Gdx.graphics.getWidth();
+		y= Gdx.graphics.getHeight();
 		ballActors = new Ball[10][10];
 		this.setScreen(new SplashScreen(this));
 	}
@@ -32,12 +34,12 @@ public class Kulki extends Game {
 
 	}
 
-	public Boolean getPause() {
-		return pause;
+	public boolean isPaused() {
+		return paused;
 	}
 
-	public void setPause(Boolean pause) {
-		this.pause = pause;
+	public void setPaused(boolean paused) {
+		this.paused = paused;
 	}
 
 	public Ball getBall(int x, int y) {
@@ -45,7 +47,8 @@ public class Kulki extends Game {
 		return ball;
 	}
 
-	public void setBallActors(int x,int y,Ball ball) {
+	public void setBallActors(int x, int y, Ball ball) {
+
 		this.ballActors [x][y] = ball;
 	}
 

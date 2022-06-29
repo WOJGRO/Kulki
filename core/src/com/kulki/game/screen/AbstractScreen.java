@@ -1,4 +1,5 @@
 package com.kulki.game.screen;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,66 +12,65 @@ import com.kulki.game.Kulki;
 
 
 public abstract class AbstractScreen implements Screen{
+	
+	protected Kulki game;
+	
+	protected Stage stage;
+	private OrthographicCamera camera;
+	protected SpriteBatch spriteBatch;
+	
+	public AbstractScreen(Kulki game){
+		this.game = game;
+		createCamera();
+		stage = new Stage(new StretchViewport(Kulki.x, Kulki.y, camera));
+		spriteBatch = new SpriteBatch();
+		Gdx.input.setInputProcessor(stage);
+		init();
+	}
 
-    protected Kulki game;
+	protected abstract void init();
 
-    protected Stage stage;
-    private OrthographicCamera camera;
-    protected SpriteBatch spriteBatch;
+	private void createCamera() {
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, Kulki.x, Kulki.y);
+		camera.update();
+	}
+	
+	@Override
+	public void render(float delta) {
+		clearScreen();
+		camera.update();
+		spriteBatch.setProjectionMatrix(camera.combined);
+	}
+	
+	@Override
+	public void show() {}
 
-    public AbstractScreen(Kulki game){
-        this.game = game;
-        createCamera();
-        stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera));
-        spriteBatch = new SpriteBatch();
-        Gdx.input.setInputProcessor(stage);
-        init();
-    }
+	private void clearScreen() {
+		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	}
 
-    protected  abstract void init();
+	@Override
+	public void resume() {
+		game.setPaused(false);
+	}
+	
+	@Override
+	public void pause() {
+		game.setPaused(true);
+	}
 
-    private void createCamera() {
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.update();
-    }
-
-    @Override
-    public void render(float delta) {
-        clearScreen();
-        camera.update();
-        spriteBatch.setProjectionMatrix(camera.combined);
-    }
-
-    @Override
-    public void show() {}
-
-    private void clearScreen() {
-        Gdx.gl.glClearColor(0, 0, 0, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    }
-
-    @Override
-    public void resume() {
-        game.setPause(false);
-
-    }
-
-    @Override
-    public void pause() {
-        game.setPause(true);
-    }
-
-    @Override
-    public void hide() {}
-
-    @Override
-    public void dispose() {
-        game.dispose();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-    }
+	@Override
+	public void hide() {}
+	
+	@Override
+	public void dispose() {
+		game.dispose();
+	}
+	
+	@Override
+	public void resize(int width, int height) {
+	}
 
 }

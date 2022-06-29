@@ -13,10 +13,10 @@ public class SplashScreen extends AbstractScreen {
     public SplashScreen(final Kulki game) {
         super(game);
 
-
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
+
                 game.setScreen(new GameScreen(game));
             }
         }, 1);
@@ -32,7 +32,7 @@ public class SplashScreen extends AbstractScreen {
         super.render(delta);
         //ScreenUtils.clear(1, 1, 0, 1);
         spriteBatch.begin();
-        spriteBatch.draw(splashImg, 0, 0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        spriteBatch.draw(splashImg, 0, 0,Kulki.x,Kulki.y);
         spriteBatch.end();
 
         Timer timer = new Timer(){
